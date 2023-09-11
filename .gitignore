@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+# Ignore all files in a specific directory
+src/config/
+
 # Logs
 logs
 *.log
