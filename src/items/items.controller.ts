@@ -23,8 +23,8 @@ export class ItemsController {
 
     // Update
     @Put(':id')
-    update(@Param('id') id): string {
-        return `Item ${id} updated`
+    update(@Body() updateItemDto: CreateItemDto, @Param('id') id): string {
+        return `Update ${id} - Name: ${updateItemDto.name}, Desc: ${updateItemDto.description}, Qty: ${updateItemDto.qty}`
     }
 
     // Delete
