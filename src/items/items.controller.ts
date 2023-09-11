@@ -21,8 +21,15 @@ export class ItemsController {
         return `Name: ${createItemDto.name}, Desc: ${createItemDto.description}, qty: ${createItemDto.qty}`
     }
 
+    // Update
+    @Put(':id')
+    update(@Param('id') id): string {
+        return `Item ${id} updated`
+    }
+
+    // Delete
     @Delete(':id')
-    deleteById(@Param('id') id): string {
+    delete(@Param('id') id): string {
         return `Item ${id} deleted`
     }
 }
