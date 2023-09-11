@@ -18,7 +18,13 @@ export class ItemsService {
         }
     ];
 
+    // Return every item
     findAll(): Item[] {
         return this.items;
+    }
+
+    // Return Single Item
+    findOne(id: string): Item {
+        return this.items.find(item => item.id === id)
     }
 }

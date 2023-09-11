@@ -12,12 +12,12 @@ export class ItemsController {
     with GET Request*/
     @Get()
     findAll(): Item[] {
-        return this.itemsService.findAll();
+        return this.itemsService.findAll(); // Return items. Retrieving is written in findAll method in service file
     }
 
     @Get(':id')
-    findOne(@Param('id') id): string {
-        return `Item id: ${id}`
+    findOne(@Param('id') id): Item {
+        return this.itemsService.findOne(id);
     }
 
     // POST request endpoint
