@@ -29,7 +29,7 @@ export class ItemsController {
     // Update
     @Put(':id')
     update(@Body() updateItemDto: CreateItemDto, @Param('id') id): string {
-        return `Update ${id} - Name: ${updateItemDto.name}, Desc: ${updateItemDto.description}, Qty: ${updateItemDto.qty}`
+        return `UPdate ${id} - Name: ${updateItemDto.name}, Desc: ${updateItemDto.description}, Qty: ${updateItemDto.qty}`
     }
 
     // Delete
