@@ -1,4 +1,5 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body } from '@nestjs/common';
+import { CreateItemDto } from './dto/create-item-dto';
 
 @Controller('items')
 export class ItemsController {
@@ -11,7 +12,7 @@ export class ItemsController {
 
     // POST request endpoint
     @Post()
-    create(): string {
-        return 'Create Item lol';
+    create(@Body() createItemDto: CreateItemDto): string {
+        return `Name: ${createItemDto.name}, Desc: ${createItemDto.description}, qty: ${createItemDto.qty}`
     }
 }
