@@ -8,22 +8,21 @@ export class ItemsController {
 
     constructor(private readonly itemsService: ItemsService) {}
 
-    /* This will automatically create an endpoint in http://localhost:3000/items 
-    with GET Request*/
-    @Get()
-    findAll(): Item[] {
+    
+    @Get() // Handles HTTP GET requests to '/items'
+    async findAll(): Promise<Item[]> {
         return this.itemsService.findAll(); // Return items. Retrieving is written in findAll method in service file
     }
 
     @Get(':id')
-    findOne(@Param('id') id): Item {
+    async findOne(@Param('id') id): Promise<Item> {
         return this.itemsService.findOne(id);
     }
 
     // POST request endpoint
     @Post()
-    create(@Body() createItemDto: CreateItemDto): string {
-        return `Name: ${createItemDto.name}, Desc: ${createItemDto.description}, qty: ${createItemDto.qty}`
+    create(@Body() createItemDto: CreateItemDto): Promise<Item> {
+        return this.itemsService.create(createItemDto)
     }
 
     // Update

@@ -1,30 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { Item } from './interfaces/item.interface'
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ItemsService {
-    private readonly items: Item[] = [
-        {
-            id: "2323232",
-            name: "Samsung Galaxy 1",
-            description: "item one",
-            qty: 100
-        },
-        {
-            id: "4343",
-            name: "Samsung Galaxy 2",
-            description: "item two",
-            qty: 50
-        }
-    ];
+    constructor(@InjectModel('Item') private readonly itemModel:Model<Item>){}
 
     // Return every item
-    findAll(): Item[] {
-        return this.items;
+    // Mongoose return a promise , so we use async await
+    // As it is returning promise, we specify return type as Promise<Item[]>
+    async findAll(): Promise<Item[]> {
+        return await this.itemModel.find();
     }
 
     // Return Single Item
-    findOne(id: string): Item {
-        return this.items.find(item => item.id === id)
+    async findOne(id: string): Promise<Item> {
+        return await this.itemModel.findById(id);
+    }
+
+    // Create Item
+    async create(item: Item): Promise<Item> {
+        const newItem = new this.itemModel(item);
+        return await newItem.save();
     }
 }
