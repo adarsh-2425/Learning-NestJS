@@ -10,12 +10,12 @@ export class ItemsController {
 
     
     @Get() // Handles HTTP GET requests to '/items'
-    async findAll(): Promise<Item[]> {
+    findAll(): Promise<Item[]> {
         return this.itemsService.findAll(); // Return items. Retrieving is written in findAll method in service file
     }
 
     @Get(':id')
-    async findOne(@Param('id') id): Promise<Item> {
+    findOne(@Param('id') id): Promise<Item> {
         return this.itemsService.findOne(id);
     }
 
